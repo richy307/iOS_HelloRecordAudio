@@ -58,6 +58,7 @@ class RecordHelper: NSObject, AVAudioRecorderDelegate {
     
     // 音訊工作階段
     func settingAudioSession(toMode mode: AudioSessionMode){
+        audioRecorder?.stop() // 停止錄音 // 避免 recordAudio() 錄音時在播放聲音
         let session = AVAudioSession.sharedInstance() // 用來與 OS Device 做溝通
         
         do {
