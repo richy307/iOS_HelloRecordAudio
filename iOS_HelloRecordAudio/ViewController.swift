@@ -16,6 +16,9 @@ enum AudioSessionMode {
 class ViewController: UIViewController, AVAudioRecorderDelegate {
     
     var recordHelper: RecordHelper?
+//    let recordHelper = {
+//        return RecordHelper()
+//    }() // closure 宣告寫法 // viewDidLoad內就不需要statement
 
     @IBAction func recordAudio(_ sender: UIButton) {
         recordHelper?.recordAudio()
