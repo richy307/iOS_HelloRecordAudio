@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
+    
+    var audioRecorder: AVAudioRecorder?
+    var audioPlayer: AVAudioPlayer?
+    var isRecording = false
 
     @IBAction func recordAudio(_ sender: UIButton) {
     }
@@ -22,6 +27,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // init an audio recorder
+        let filename = "User.wav"
+        let path = NSHomeDirectory() + "/Documents/" + filename
+        let url = URL(fileURLWithPath: path)
+        let recordSettings: [String:Any] = [
+            AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
+            AVEncoderBitRateKey: 16,
+            AVNumberOfChannelsKey: 2,
+            AVSampleRateKey: 44100.0
+        ]
+        do {
+            audioRecorder = try AVAudioRecorder(url: url, settings: recordSettings)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 
 
